@@ -30,9 +30,11 @@ ZooRecord::ZooRecord(std::string input_file_name)
         exit(1);
     }
 
-    std::string junk;
-    getline(input_file, junk, '\n');
-    int count = 0;
+    std::string junk; //created a variable junk here with the intention of placing stuff 
+                        //I don't want to use into this
+    getline(input_file, junk, '\n'); //taking stream from input file, only untill end of line (eol) , 
+                                        //placeing it into junk
+    int count = 0; //initializing a variable so I don't have a memory leak 
     //this was a test to see if I was printing intended line
     //std::cout << junk <<std::endl; //printing out first line stored in string junk taken from stream
                                    
@@ -50,9 +52,37 @@ ZooRecord::ZooRecord(std::string input_file_name)
     std::string animal_name; //declared a string animal_name to place the names ONLY into
     getline(read,animal_name,','); //this has parameters source, location, delimiter, which should give
                                     //me the name of the animals ONLY
-    std::cout << animal_name << std::endl;//I can now print out all the names of the animals only in my zoo.csv
+    //std::cout << animal_name << std::endl;//I can now print out all the names of the animals ONLY in my zoo.csv
+    
+     for(int i = 0; i < 6; i++)
+    {
+        getline(read, junk, ',');
+        //std::cout << "hello";
+    }                               //all helps me parse through 
+    std::string predator;
+    getline(read, predator,',');
+    //std::cout << animal_name << " " << predator<< std::endl;
+    
+    for(int i = 0; i < 7; i++)
+    {
+        getline(read, junk,',');
+    }
+
+    std::string domestic;
+    getline(read, domestic,',');
+    std::cout << animal_name << " " << predator<< " "<< domestic << std::endl;
+    
     count++;
+
+
+   
+
+
     } //i can add all the lines and print them from csv.
+
+    
+
+
 /**
     //OK! so far I've got access to the first two lines in .csv
     ///now I need access to specific parts in my second line bc thats the information
