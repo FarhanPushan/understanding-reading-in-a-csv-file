@@ -18,27 +18,47 @@
  
 ZooRecord::ZooRecord(std::string input_file_name)
 {
+    
+    
+    
     std::ifstream input_file; // file pointer
     input_file.open(input_file_name); //open an existing file
 
+    if(input_file.fail())
+    {
+        std::cerr << "Failed to read in file." << std::endl;
+        exit(1);
+    }
+
     std::string junk;
     getline(input_file, junk, '\n');
-    std::cout << junk <<std::endl; //printing out first line stored in string junk taken from stream
+    int count = 0;
+    //this was a test to see if I was printing intended line
+    //std::cout << junk <<std::endl; //printing out first line stored in string junk taken from stream
                                    
     //Recall! the first line from zoo.csv file :animal_name,hair,feathers,eggs,milk,airborne,aquatic,
     ///predator,toothed,backbone,breathes,venomous,fins,legs,tail,domestic,catsize,class_type
     /// is all stored in junk so now I'm about to work with the next line. I want to store
     /// the next line into another string variable; place
+    
+    while(count < 101)
+    {
+
     std::string place;
     getline(input_file, place,'\n');
-    std::cout << place << std::endl;//printing out second line by referring to  string in string place
-
-
+    std::stringstream read(place); //taking sec line stream, turning it into a string stream
+    std::string animal_name; //declared a string animal_name to place the names ONLY into
+    getline(read,animal_name,','); //this has parameters source, location, delimiter, which should give
+                                    //me the name of the animals ONLY
+    std::cout << animal_name << std::endl;//I can now print out all the names of the animals only in my zoo.csv
+    count++;
+    } //i can add all the lines and print them from csv.
+/**
     //OK! so far I've got access to the first two lines in .csv
     ///now I need access to specific parts in my second line bc thats the information
     ///i want to store
     std::stringstream read(place);//this allows me to work with the second line in zoo in a diff way
-    ///I'm not quite clear on that is yet...
+    ///I'm not quite clear on what that is yet...
     std::string animal_name;
     getline(read,animal_name,','); //we know that the first spot in our line is a name, we know that
     ///the delimiter basically means the end, 
@@ -97,6 +117,9 @@ ZooRecord::ZooRecord(std::string input_file_name)
     Animal b(secAnimalName,(domestic2=="1"),predator2=="1");
 
     add(b);
+
+
+**/
 }
 
 /**@post displays all animals in record, one per line by calling animal's display method” **/ 
