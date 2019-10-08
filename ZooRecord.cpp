@@ -70,8 +70,14 @@ ZooRecord::ZooRecord(std::string input_file_name)
 
     std::string domestic;
     getline(read, domestic,',');
-    std::cout << animal_name << " " << predator<< " "<< domestic << std::endl;
+    //std::cout << animal_name << " " << predator<< " "<< domestic << std::endl;
     
+
+    Animal b(animal_name,(domestic=="1"),predator=="1"); //i understand bools, I don't understand why 
+                                                        //they 
+
+    add(b);
+
     count++;
 
 
